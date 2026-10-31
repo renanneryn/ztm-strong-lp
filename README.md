@@ -1,70 +1,37 @@
-# ZTM Strong - Engenharia e Construções Premium
+# ZTM Strong
 
-[![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com)
-[![React](https://img.shields.io/badge/React-19-blue?style=for-the-badge&logo=react)](https://react.dev)
-[![TailwindCSS](https://img.shields.io/badge/Tailwind-CSS-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com)
+Landing page da **ZTM STRONG Construções e Empreendimentos LTDA.**: serviços de construção civil, fachadas, impermeabilização, acabamentos, instalações e aluguel de equipamentos, com contato por WhatsApp.
 
-Esta é uma Landing Page de alto desempenho desenvolvida para a **ZTM Strong**, uma empresa líder no setor de construção civil e empreendimentos. O projeto foi concebido com uma estética "Premium Industrial", utilizando uma paleta de cores foscas (Concrete) e acentos em Ouro (Gold) para transmitir solidez e sofisticação.
+## Stack
 
-## 💎 Diferenciais do Projeto
+React 19, Vite 6, Tailwind CSS 4, motion (framer-motion), TypeScript e lucide-react.
 
-- **Experiência de Usuário (UX) Imersiva**: Utilização sistemática de `framer-motion` para animações de entrada, revelações de texto e transições suaves que guiam o olhar do usuário.
-- **Arquitetura de Componentes**: Código modular e tipado com TypeScript, garantindo manutenibilidade e escalabilidade.
-- **Design System Customizado**: Tema Tailwind balanceado com tipografia técnica (Inter) e industrial, focado em legibilidade e hierarquia visual.
-- **Mobile-First & Performance**: Totalmente responsivo e otimizado para carregamento rápido, essencial para conversão de leads via dispositivos móveis.
-- **Integração Social**: Botão flutuante de WhatsApp e CTAs estratégicos integrados em toda a navegação.
+## Rodando localmente
 
-## 🛠️ Stack Tecnológica
+```bash
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # gera dist/
+npm run lint     # checagem de tipos (tsc --noEmit)
+```
 
-- **Core**: [React 19](https://react.dev/) + [Vite](https://vitejs.dev/)
-- **Estilização**: [Tailwind CSS](https://tailwindcss.com/)
-- **Animações**: [Framer Motion](https://www.framer.com/motion/)
-- **Ícones**: [Lucide React](https://lucide.dev/)
-- **Linguagem**: [TypeScript](https://www.typescriptlang.org/)
-
-## 📂 Estrutura de Pastas
+## Estrutura
 
 ```text
 src/
-├── assets/          # Ativos estáticos (Logos, Imagens)
-├── components/      # Componentes de UI (Header, Hero, Services, etc.)
-├── lib/             # Utilitários e configurações
-├── App.tsx          # Componente principal e orquestração de seções
-└── main.tsx         # Ponto de entrada da aplicação
+├── assets/        # imagens em WebP (logo, serviços e fotos das obras em projects/)
+├── components/    # Header, Hero, Services, Values, SocialProof, Footer, PrivacyPolicy...
+├── App.tsx        # página principal
+└── main.tsx       # entrada; serve /politica-de-privacidade sem router
+public/            # favicon.png e og.jpg (prévia de compartilhamento)
 ```
 
-## 🚀 Instalação e Execução
+## Imagens
 
-Para rodar este projeto em sua máquina local, siga os passos abaixo:
+Use WebP. Fotos de serviços com no máximo ~1000 px de largura e a logo com ~400 px. As galerias de `src/assets/projects/` são carregadas sob demanda pelo `SocialProof`.
 
-1. **Clone o repositório:**
-   ```bash
-   git clone https://github.com/renanneryn/zrm-stronger.git
-   ```
+> O componente `SocialProof` (galeria de obras) existe, mas hoje não é renderizado em `App.tsx`.
 
-2. **Instale as dependências (preferencialmente usando npm):**
-   ```bash
-   npm install
-   ```
+## Deploy
 
-3. **Inicie o ambiente de desenvolvimento:**
-   ```bash
-   npm run dev
-   ```
-
-4. **Acesse via browser:**
-   O projeto estará disponível em `http://localhost:3000`.
-
-## 📦 Deploy (Vercel)
-
-O projeto está pronto para produção. O workflow sugerido é via Vercel:
-
-1. Importe o repositório no dashboard da Vercel.
-2. Defina o **Build Command** como `npm run build`.
-3. Defina o **Output Directory** como `dist`.
-4. Clique em Deploy.
-
----
-
-Desenvolvido com foco em excelência e precisão técnica. 🏗️✨
-
+Vercel: build `npm run build`, saída `dist`. O `vercel.json` reescreve todas as rotas para `index.html`, o que atende `/politica-de-privacidade`.

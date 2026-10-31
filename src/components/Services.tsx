@@ -1,12 +1,12 @@
 import { motion } from "motion/react";
 import { Building2, Paintbrush, Droplets, Grid3X3, Zap, HardHat } from "lucide-react";
 
-import construcaoImg from "../assets/construcao.jpg";
-import fachadaImg from "../assets/fachada.jpg";
-import impermeabilidadeImg from "../assets/impermeabilidade.jpg";
-import acabamentosImg from "../assets/acabamentos.jpg";
-import tecnicasImg from "../assets/tecnicas.jpg";
-import aluguelImg from "../assets/aluguel.jpg";
+import construcaoImg from "../assets/construcao.webp";
+import fachadaImg from "../assets/fachada.webp";
+import impermeabilidadeImg from "../assets/impermeabilidade.webp";
+import acabamentosImg from "../assets/acabamentos.webp";
+import tecnicasImg from "../assets/tecnicas.webp";
+import aluguelImg from "../assets/aluguel.webp";
 
 const services = [
   {

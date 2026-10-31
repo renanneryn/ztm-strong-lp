@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { Phone, Mail, Instagram, MapPin } from "lucide-react";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo.webp";
 
 export default function Header() {
   return (
