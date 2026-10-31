@@ -1,15 +1,19 @@
 import { motion } from "motion/react";
 import { useState, useEffect } from "react";
 
-const proj1 = Object.values(import.meta.glob('../assets/projects/01_Coletor_Tronco_Faria_Timbo_e_Manguinhos/*.webp', { import: 'default', eager: true })) as string[];
-const proj2 = Object.values(import.meta.glob('../assets/projects/02_Ze_Delivre_Ambev_Sao_Cristovao/*.webp', { import: 'default', eager: true })) as string[];
-const proj3 = Object.values(import.meta.glob('../assets/projects/03_Retrofit_Hotel_Novo_Mundo_Uliving/*.webp', { import: 'default', eager: true })) as string[];
-const proj4 = Object.values(import.meta.glob('../assets/projects/04_Terraplanagem_Via_Sul/*.webp', { import: 'default', eager: true })) as string[];
-const proj5 = Object.values(import.meta.glob('../assets/projects/05_Terraplanagem_Emccamp/*.webp', { import: 'default', eager: true })) as string[];
-const proj6 = Object.values(import.meta.glob('../assets/projects/06_Retrofit_Rede_Hoteis_Atlantico/*.webp', { import: 'default', eager: true })) as string[];
-const proj7 = Object.values(import.meta.glob('../assets/projects/07_Condominio_Solar_de_Aveiros/*.webp', { import: 'default', eager: true })) as string[];
-const proj8 = Object.values(import.meta.glob('../assets/projects/08_Condominio_Morada_Carioca/*.webp', { import: 'default', eager: true })) as string[];
-const proj9 = Object.values(import.meta.glob('../assets/projects/09_Residencial_Palazzo_Strelitzia_Biancha/*.webp', { import: 'default', eager: true })) as string[];
+// Galerias carregadas sob demanda (code splitting): cada foto vira um chunk próprio.
+
+type ImageLoader = () => Promise<string>;
+
+const proj1 = Object.values(import.meta.glob('../assets/projects/01_Coletor_Tronco_Faria_Timbo_e_Manguinhos/*.webp', { import: 'default' })) as ImageLoader[];
+const proj2 = Object.values(import.meta.glob('../assets/projects/02_Ze_Delivre_Ambev_Sao_Cristovao/*.webp', { import: 'default' })) as ImageLoader[];
+const proj3 = Object.values(import.meta.glob('../assets/projects/03_Retrofit_Hotel_Novo_Mundo_Uliving/*.webp', { import: 'default' })) as ImageLoader[];
+const proj4 = Object.values(import.meta.glob('../assets/projects/04_Terraplanagem_Via_Sul/*.webp', { import: 'default' })) as ImageLoader[];
+const proj5 = Object.values(import.meta.glob('../assets/projects/05_Terraplanagem_Emccamp/*.webp', { import: 'default' })) as ImageLoader[];
+const proj6 = Object.values(import.meta.glob('../assets/projects/06_Retrofit_Rede_Hoteis_Atlantico/*.webp', { import: 'default' })) as ImageLoader[];
+const proj7 = Object.values(import.meta.glob('../assets/projects/07_Condominio_Solar_de_Aveiros/*.webp', { import: 'default' })) as ImageLoader[];
+const proj8 = Object.values(import.meta.glob('../assets/projects/08_Condominio_Morada_Carioca/*.webp', { import: 'default' })) as ImageLoader[];
+const proj9 = Object.values(import.meta.glob('../assets/projects/09_Residencial_Palazzo_Strelitzia_Biancha/*.webp', { import: 'default' })) as ImageLoader[];
 
 const works = [
   {
@@ -48,11 +52,7 @@ const works = [
       "Esta é uma obra de Retrofit, onde o antigo hotel foi todo adaptado e modernizado.",
       "Toda as instalações e móveis dos aptos foram modificadas e atualizadas.",
       "Algumas características foram mantidas e reformadas para manter a identidade do antigo hotel.",
-      "Esta é uma obra de Retrofit, onde o antigo hotel foi todo adaptado e modernizado.",
-      "Toda as instalações e móveis dos aptos foram modificadas e atualizadas.",
-      "Adaptado para um novo seguimento comercial no Rio de Janeiro o Student House.",
-      "Algumas características foram mantidas e reformadas para manter a identidade do antigo hotel.",
-      "Toda as instalações e móveis dos aptos foram modificadas e atualizadas."
+      "Adaptado para um novo seguimento comercial no Rio de Janeiro o Student House."
     ],
     images: proj3,
     colSpan: "md:col-span-6 lg:col-span-4 lg:row-span-2"
@@ -114,6 +114,20 @@ const works = [
 
 function ProjectCard({ work, index, colSpan }: { work: any; index: number; colSpan: string }) {
   const [activeImage, setActiveImage] = useState(0);
+  const [near, setNear] = useState(false);
+  const [srcs, setSrcs] = useState<string[]>([]);
+
+  // Só baixa as fotos quando o card está perto da tela.
+  useEffect(() => {
+    if (!near) return;
+    let cancelled = false;
+    Promise.all((work.images as ImageLoader[]).map((load) => load())).then((urls) => {
+      if (!cancelled) setSrcs(urls);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [near, work.images]);
 
   useEffect(() => {
     if (work.images.length <= 1) return;
@@ -128,17 +142,19 @@ function ProjectCard({ work, index, colSpan }: { work: any; index: number; colSp
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
       whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true }}
+      viewport={{ once: true, margin: "300px" }}
+      onViewportEnter={() => setNear(true)}
       transition={{ delay: index * 0.1, duration: 0.6 }}
       className={`group relative overflow-hidden border border-white/10 bg-slate-800 h-[400px] md:h-auto ${colSpan}`}
     >
-      {work.images.map((img: string, i: number) => (
+      {srcs.map((img: string, i: number) => (
         <img 
           key={i}
           src={img} 
           alt={`${work.title} - photo ${i+1}`} 
           className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ${i === activeImage ? 'opacity-40 group-hover:opacity-40 group-hover:scale-105 z-0' : 'opacity-0 z-[-1]'}`}
           referrerPolicy="no-referrer"
+          decoding="async"
         />
       ))}
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end p-8 z-10">
