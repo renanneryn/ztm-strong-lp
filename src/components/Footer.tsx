@@ -1,4 +1,4 @@
-import { Shield, Building2, Home, Phone, Mail, MapPin, Instagram } from "lucide-react";
+import { Shield, Building2, Home, Phone, Mail, MapPin } from "lucide-react";
 import logo from "../assets/logo.webp";
 
 export default function Footer() {
@@ -25,15 +25,10 @@ export default function Footer() {
                 }}
               />
             </div>
-            <p className="text-slate-500 text-sm leading-relaxed mb-8">
+            <p className="text-slate-500 text-sm leading-relaxed">
               ZTM STRONG CONSTRUÇÕES E EMPREENDIMENTOS LTDA. <br />
               Referência em construção civil e manutenção especializada, entregando solidez do alicerce à fachada.
             </p>
-            <div className="flex gap-4">
-              <a href="#" className="h-10 w-10 border border-white/10 rounded flex items-center justify-center hover:bg-brand-gold hover:text-brand-concrete transition-all">
-                <Instagram className="w-5 h-5" />
-              </a>
-            </div>
           </div>
 
           <div>
@@ -77,7 +72,7 @@ export default function Footer() {
 
         <div className="border-t border-white/5 pt-10 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-600 text-[10px] uppercase tracking-widest font-mono">
           <p>© 2026 ZTM STRONG CONSTRUÇÕES. TODOS OS DIREITOS RESERVADOS.</p>
-          <p>DESENVOLVIDO COM SOLIDEZ.</p>
+          <a href="/politica-de-privacidade" className="hover:text-brand-gold transition-colors">Política de Privacidade</a>
         </div>
       </div>
     </footer>
