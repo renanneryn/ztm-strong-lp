@@ -1,5 +1,5 @@
 import { Shield, Building2, Home, Phone, Mail, MapPin, Instagram } from "lucide-react";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo.webp";
 
 export default function Footer() {
   return (

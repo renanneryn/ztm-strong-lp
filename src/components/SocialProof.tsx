@@ -1,15 +1,15 @@
 import { motion } from "motion/react";
 import { useState, useEffect } from "react";
 
-const proj1 = Object.values(import.meta.glob('../assets/projects/01_Coletor_Tronco_Faria_Timbo_e_Manguinhos/*.jpg', { import: 'default', eager: true })) as string[];
-const proj2 = Object.values(import.meta.glob('../assets/projects/02_Ze_Delivre_Ambev_Sao_Cristovao/*.jpg', { import: 'default', eager: true })) as string[];
-const proj3 = Object.values(import.meta.glob('../assets/projects/03_Retrofit_Hotel_Novo_Mundo_Uliving/*.jpg', { import: 'default', eager: true })) as string[];
-const proj4 = Object.values(import.meta.glob('../assets/projects/04_Terraplanagem_Via_Sul/*.jpg', { import: 'default', eager: true })) as string[];
-const proj5 = Object.values(import.meta.glob('../assets/projects/05_Terraplanagem_Emccamp/*.jpg', { import: 'default', eager: true })) as string[];
-const proj6 = Object.values(import.meta.glob('../assets/projects/06_Retrofit_Rede_Hoteis_Atlantico/*.jpg', { import: 'default', eager: true })) as string[];
-const proj7 = Object.values(import.meta.glob('../assets/projects/07_Condominio_Solar_de_Aveiros/*.jpg', { import: 'default', eager: true })) as string[];
-const proj8 = Object.values(import.meta.glob('../assets/projects/08_Condominio_Morada_Carioca/*.jpg', { import: 'default', eager: true })) as string[];
-const proj9 = Object.values(import.meta.glob('../assets/projects/09_Residencial_Palazzo_Strelitzia_Biancha/*.jpg', { import: 'default', eager: true })) as string[];
+const proj1 = Object.values(import.meta.glob('../assets/projects/01_Coletor_Tronco_Faria_Timbo_e_Manguinhos/*.webp', { import: 'default', eager: true })) as string[];
+const proj2 = Object.values(import.meta.glob('../assets/projects/02_Ze_Delivre_Ambev_Sao_Cristovao/*.webp', { import: 'default', eager: true })) as string[];
+const proj3 = Object.values(import.meta.glob('../assets/projects/03_Retrofit_Hotel_Novo_Mundo_Uliving/*.webp', { import: 'default', eager: true })) as string[];
+const proj4 = Object.values(import.meta.glob('../assets/projects/04_Terraplanagem_Via_Sul/*.webp', { import: 'default', eager: true })) as string[];
+const proj5 = Object.values(import.meta.glob('../assets/projects/05_Terraplanagem_Emccamp/*.webp', { import: 'default', eager: true })) as string[];
+const proj6 = Object.values(import.meta.glob('../assets/projects/06_Retrofit_Rede_Hoteis_Atlantico/*.webp', { import: 'default', eager: true })) as string[];
+const proj7 = Object.values(import.meta.glob('../assets/projects/07_Condominio_Solar_de_Aveiros/*.webp', { import: 'default', eager: true })) as string[];
+const proj8 = Object.values(import.meta.glob('../assets/projects/08_Condominio_Morada_Carioca/*.webp', { import: 'default', eager: true })) as string[];
+const proj9 = Object.values(import.meta.glob('../assets/projects/09_Residencial_Palazzo_Strelitzia_Biancha/*.webp', { import: 'default', eager: true })) as string[];
 
 const works = [
   {
